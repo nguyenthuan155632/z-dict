@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+#!/usr/bin/env node
+
+/**
+ * Generate a professional favicon for Z-Dict
+ * Creates a modern, clean design with the 'Z' letter on a gradient background
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+// Create an SVG with better design
+const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <!-- Gradient background for modern look -->
@@ -58,4 +69,47 @@
   <ellipse cx="256" cy="120" rx="200" ry="80" 
            fill="rgba(255,255,255,0.1)" 
            opacity="0.6"/>
-</svg>
+</svg>`;
+
+// Save the main favicon.svg
+const faviconSvgPath = path.join(__dirname, '../public/favicon.svg');
+fs.writeFileSync(faviconSvgPath, svg);
+console.log('✓ Created favicon.svg');
+
+// For PNG generation, we'll use a simpler approach with sharp if available
+// Otherwise, provide instructions for manual conversion
+try {
+  const sharp = require('sharp');
+
+  const sizes = [16, 32, 48, 64, 128, 256];
+
+  Promise.all(
+    sizes.map(async (size) => {
+      const outputPath = path.join(__dirname, `../public/favicon-${size}x${size}.png`);
+      await sharp(Buffer.from(svg))
+        .resize(size, size)
+        .png()
+        .toFile(outputPath);
+      console.log(`✓ Created favicon-${size}x${size}.png`);
+    })
+  ).then(() => {
+    // Create the main favicon.png (32x32 is standard)
+    const mainFaviconPath = path.join(__dirname, '../public/favicon.png');
+    return sharp(Buffer.from(svg))
+      .resize(32, 32)
+      .png()
+      .toFile(mainFaviconPath);
+  }).then(() => {
+    console.log('✓ Created favicon.png (32x32)');
+    console.log('\n✅ All favicons generated successfully!');
+  }).catch((err) => {
+    console.error('Error generating PNG favicons:', err.message);
+    console.log('\n⚠️  Install sharp for PNG generation: npm install sharp --save-dev');
+  });
+
+} catch (err) {
+  console.log('\n⚠️  Sharp not available. Installing it now...');
+  console.log('Run: npm install sharp --save-dev');
+  console.log('Then run this script again to generate PNG favicons.');
+}
+
