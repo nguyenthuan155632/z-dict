@@ -1,74 +1,146 @@
 #!/usr/bin/env node
 
 /**
- * Generate a professional favicon for Z-Dict
- * Creates a modern, clean design with the 'Z' letter on a gradient background
+ * Generate a SUPER NICE professional favicon for Z-Dict
+ * Modern, beautiful design with depth, shadows, and attention to detail
  */
 
 const fs = require('fs');
 const path = require('path');
 
-// Create an SVG with better design
+// Create a stunning SVG with professional design
 const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Gradient background for modern look -->
+    <!-- Beautiful gradient background -->
     <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4f46e5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4338ca;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Shadow for depth -->
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
-      <feOffset dx="0" dy="2" result="offsetblur"/>
+    <!-- Book gradient for depth -->
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Soft shadow for depth -->
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="0" dy="4" result="offsetblur"/>
       <feComponentTransfer>
-        <feFuncA type="linear" slope="0.3"/>
+        <feFuncA type="linear" slope="0.4"/>
       </feComponentTransfer>
       <feMerge>
         <feMergeNode/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+    
+    <!-- Text shadow -->
+    <filter id="textShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="3" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Glossy effect -->
+    <radialGradient id="glossEffect" cx="50%" cy="30%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="70%" style="stop-color:#ffffff;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
   </defs>
   
-  <!-- Background with rounded corners -->
-  <rect width="512" height="512" rx="96" ry="96" fill="url(#bgGradient)"/>
+  <!-- Background with smooth rounded corners -->
+  <rect width="512" height="512" rx="110" ry="110" fill="url(#bgGradient)"/>
   
-  <!-- Book icon base (simplified) -->
+  <!-- Main content group -->
   <g transform="translate(256, 256)">
-    <!-- Left book page -->
-    <path d="M -80 -100 L -80 100 L -5 110 L -5 -90 Z" 
-          fill="rgba(255,255,255,0.15)" 
-          stroke="rgba(255,255,255,0.3)" 
-          stroke-width="2"/>
+    <!-- Decorative book illustration -->
+    <g filter="url(#softShadow)">
+      <!-- Book cover - left side -->
+      <path d="M -100 -110 L -100 120 L -10 125 L -10 -105 Q -10 -110 -15 -110 Z" 
+            fill="url(#bookGradient)" 
+            opacity="0.9"/>
+      
+      <!-- Book pages - left -->
+      <path d="M -95 -105 L -95 115 L -15 120 L -15 -100 Z" 
+            fill="#ffffff" 
+            opacity="0.95"/>
+      
+      <!-- Book cover - right side -->
+      <path d="M 10 -105 L 10 125 L 100 120 L 100 -110 Q 100 -110 95 -110 Z" 
+            fill="url(#bookGradient)" 
+            opacity="0.9"/>
+      
+      <!-- Book pages - right -->
+      <path d="M 15 -100 L 15 120 L 95 115 L 95 -105 Z" 
+            fill="#ffffff" 
+            opacity="0.95"/>
+      
+      <!-- Book spine with detail -->
+      <rect x="-10" y="-110" width="20" height="235" 
+            fill="#ea580c" 
+            opacity="0.95"/>
+      
+      <!-- Spine highlight -->
+      <rect x="-8" y="-110" width="4" height="235" 
+            fill="#ffffff" 
+            opacity="0.3"/>
+      
+      <!-- Page lines detail -->
+      <g opacity="0.3">
+        <line x1="-80" y1="-70" x2="-30" y2="-68" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="-80" y1="-50" x2="-30" y2="-48" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="-80" y1="-30" x2="-30" y2="-28" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="30" y1="-68" x2="80" y2="-70" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="30" y1="-48" x2="80" y2="-50" stroke="#94a3b8" stroke-width="2"/>
+        <line x1="30" y1="-28" x2="80" y2="-30" stroke="#94a3b8" stroke-width="2"/>
+      </g>
+    </g>
     
-    <!-- Right book page -->
-    <path d="M 5 -90 L 5 110 L 80 100 L 80 -100 Z" 
-          fill="rgba(255,255,255,0.15)" 
-          stroke="rgba(255,255,255,0.3)" 
-          stroke-width="2"/>
-    
-    <!-- Book spine -->
-    <rect x="-5" y="-100" width="10" height="210" 
-          fill="rgba(255,255,255,0.25)"/>
-    
-    <!-- Letter 'Z' - main feature -->
-    <text x="0" y="30" 
-          font-family="system-ui, -apple-system, sans-serif" 
-          font-size="180" 
+    <!-- Large beautiful 'Z' letter -->
+    <text x="0" y="40" 
+          font-family="'SF Pro Display', 'Inter', system-ui, -apple-system, sans-serif" 
+          font-size="200" 
           font-weight="900" 
-          fill="white" 
+          fill="#ffffff" 
           text-anchor="middle" 
           dominant-baseline="middle"
-          filter="url(#shadow)"
-          style="letter-spacing: -0.05em;">Z</text>
+          filter="url(#textShadow)"
+          style="letter-spacing: -0.02em;">Z</text>
+    
+    <!-- Accent stroke on Z for extra pop -->
+    <text x="0" y="40" 
+          font-family="'SF Pro Display', 'Inter', system-ui, -apple-system, sans-serif" 
+          font-size="200" 
+          font-weight="900" 
+          fill="none"
+          stroke="#fbbf24"
+          stroke-width="4"
+          text-anchor="middle" 
+          dominant-baseline="middle"
+          opacity="0.4"
+          style="letter-spacing: -0.02em;">Z</text>
   </g>
   
-  <!-- Subtle shine effect on top -->
-  <ellipse cx="256" cy="120" rx="200" ry="80" 
-           fill="rgba(255,255,255,0.1)" 
-           opacity="0.6"/>
+  <!-- Glossy overlay for premium feel -->
+  <ellipse cx="256" cy="140" rx="220" ry="100" 
+           fill="url(#glossEffect)"/>
+  
+  <!-- Subtle vignette on edges -->
+  <rect width="512" height="512" rx="110" ry="110" 
+        fill="radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.2))"
+        style="mix-blend-mode: multiply;" 
+        opacity="0.3"/>
 </svg>`;
 
 // Save the main favicon.svg
