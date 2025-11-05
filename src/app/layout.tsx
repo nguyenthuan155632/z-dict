@@ -5,7 +5,7 @@ import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
 export const metadata: Metadata = {
   title: 'Z-Dict - English-Vietnamese Dictionary',
   description: 'A bilingual dictionary with AI-powered translations',
-  manifest: '/manifest.json',
+  manifest: '/manifest.json?v=3',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -32,7 +32,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#ffffff',
+  themeColor: '#4f46e5',
   viewportFit: 'cover',
 };
 
@@ -55,7 +55,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
 
         {/* PWA Manifest */}
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/manifest.json?v=3" />
 
         {/* Apple-specific PWA meta tags */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
