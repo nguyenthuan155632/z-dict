@@ -1,0 +1,40 @@
+{
+  "name": "z-dict",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:setup": "node scripts/setup-database.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@neondatabase/serverless": "^1.0.2",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.7",
+    "next": "^16.0.1",
+    "next-auth": "^5.0.0-beta.22",
+    "postgres": "^3.4.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.6",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.1",
+    "typescript": "^5.9.3"
+  }
+}
