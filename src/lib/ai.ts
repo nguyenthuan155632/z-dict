@@ -32,7 +32,7 @@ function createWordTranslationPrompt(request: TranslationRequest): string {
 
   return `You are a professional bilingual dictionary. Provide a comprehensive dictionary entry for the word "${text}" from ${sourceLangName} to ${targetLangName}.
 
-Format your response as follows:
+Format your response EXACTLY as follows:
 
 **${text}**
 
@@ -41,36 +41,66 @@ Format your response as follows:
 **Part of Speech:** [noun/verb/adjective/adverb/etc.]
 
 **Definitions:**
+
 1. [Most common meaning/definition in ${targetLangName}]
-   - Example 1: [Example sentence using the word in ${targetLangName}]
-   - Example 2: [Another example sentence using the word in ${targetLangName}]
+   - Example 1: [Example sentence in ${sourceLangName}]  
+     → Translation: [Translation of Example 1 in ${targetLangName}]
+   
+   - Example 2: [Another example sentence in ${sourceLangName}]  
+     → Translation: [Translation of Example 2 in ${targetLangName}]
 
 2. [Second meaning if applicable]
-   - Example 1: [Example sentence using the word in ${targetLangName}]
-   - Example 2: [Another example sentence using the word in ${targetLangName}]
+   - Example 1: [Example sentence in ${sourceLangName}]  
+     → Translation: [Translation of Example 1 in ${targetLangName}]
+   
+   - Example 2: [Another example sentence in ${sourceLangName}]  
+     → Translation: [Translation of Example 2 in ${targetLangName}]
 
 3. [Third meaning if applicable]
-   - Example 1: [Example sentence using the word in ${targetLangName}]
-   - Example 2: [Another example sentence using the word in ${targetLangName}]
+   - Example 1: [Example sentence in ${sourceLangName}]  
+     → Translation: [Translation of Example 1 in ${targetLangName}]
+   
+   - Example 2: [Another example sentence in ${sourceLangName}]  
+     → Translation: [Translation of Example 2 in ${targetLangName}]
 
-CRITICAL REQUIREMENTS:
+🚨 CRITICAL FORMAT REQUIREMENTS 🚨
+
+TRANSLATION DIRECTION: ${sourceLangName} → ${targetLangName}
+
+EXACT FORMAT YOU MUST FOLLOW:
+
+1. [Definition 1 in ${targetLangName}]
+   - Example 1: [Sentence in ${sourceLangName}]  
+     → Translation: [Translation in ${targetLangName}]
+   
+   - Example 2: [Sentence in ${sourceLangName}]  
+     → Translation: [Translation in ${targetLangName}]
+
+
+2. [Definition 2 in ${targetLangName}]
+   - Example 1: [Sentence in ${sourceLangName}]  
+     → Translation: [Translation in ${targetLangName}]
+   
+   - Example 2: [Sentence in ${sourceLangName}]  
+     → Translation: [Translation in ${targetLangName}]
+
+
+3. [Definition 3 in ${targetLangName}]
+   - Example 1: [Sentence in ${sourceLangName}]  
+     → Translation: [Translation in ${targetLangName}]
+   
+   - Example 2: [Sentence in ${sourceLangName}]  
+     → Translation: [Translation in ${targetLangName}]
+
+OTHER REQUIREMENTS:
 - ALWAYS provide at least 2-3 definitions, even for simple words
-- Each definition MUST have EXACTLY 2 example sentences (no exceptions)
-- Example sentences MUST be in ${targetLangName} (the language you are translating TO)
-- Do NOT include translations of the examples - just the examples themselves
-- For Vietnamese→English: Examples in ENGLISH only
-- For English→Vietnamese: Examples in VIETNAMESE only
+- Each definition MUST have EXACTLY 2 examples with translations (no exceptions)
 - Include different contexts: literal meaning, common usage, idiomatic expressions
 - The most commonly used meaning is listed first
 - Phonetic transcription is accurate and in IPA format
 - Examples must be natural, practical, and demonstrate proper usage in different contexts
 - Make the entry detailed and comprehensive, similar to Oxford or Cambridge dictionaries
-- Do NOT include a "Usage Notes" section
-
-Example structure you MUST follow:
-Definition 1: [Main meaning in ${targetLangName}] + 2 example sentences in ${targetLangName}
-Definition 2: [Secondary meaning in ${targetLangName}] + 2 example sentences in ${targetLangName}
-Definition 3: [Additional meaning in ${targetLangName}] + 2 example sentences in ${targetLangName}`;
+- Do NOT include a "Usage Notes" section`;
 }
 
 function createSentenceTranslationPrompt(request: TranslationRequest): string {
