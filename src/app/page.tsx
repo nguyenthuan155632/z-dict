@@ -24,18 +24,33 @@ export default async function HomePage() {
           marginBottom: '2rem',
           padding: '2rem 0 1.5rem',
         }}>
-          <h1 style={{
-            fontSize: 'clamp(2rem, 8vw, 2.75rem)',
-            fontWeight: '800',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '1rem',
             marginBottom: '0.75rem',
-            letterSpacing: '-0.02em',
           }}>
-            Z-Dict
-          </h1>
+            <img
+              src="/icon-192x192.png"
+              alt="Z-Dict"
+              style={{
+                width: 'clamp(48px, 12vw, 72px)',
+                height: 'clamp(48px, 12vw, 72px)',
+                borderRadius: 'clamp(10px, 2.5vw, 16px)',
+                boxShadow: '0 4px 16px rgba(30, 58, 95, 0.2)'
+              }}
+            />
+            <h1 style={{
+              fontSize: 'clamp(2rem, 8vw, 2.75rem)',
+              fontWeight: '800',
+              color: '#2c4e6b',
+              margin: 0,
+              letterSpacing: '-0.02em',
+            }}>
+              Z-Dict
+            </h1>
+          </div>
           <p style={{
             fontSize: 'clamp(1rem, 4vw, 1.125rem)',
             color: '#64748b',

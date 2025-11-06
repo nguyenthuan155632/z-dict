@@ -40,19 +40,29 @@ export function MobileHeader({ isAuthenticated, userName }: MobileHeaderProps) {
           justifyContent: 'space-between',
         }}>
           <Link href="/" style={{
-            fontSize: '1.5rem',
-            fontWeight: '800',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            letterSpacing: '-0.02em',
+            gap: '0.625rem',
             textDecoration: 'none',
           }}>
-            Z-Dict
+            <img
+              src="/icon-128x128.png"
+              alt="Z-Dict"
+              style={{
+                width: '36px',
+                height: '36px',
+                borderRadius: '7px',
+                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.12)'
+              }}
+            />
+            <span style={{
+              fontSize: '1.375rem',
+              fontWeight: '800',
+              color: '#2c4e6b',
+              letterSpacing: '-0.02em',
+            }}>
+              Z-Dict
+            </span>
           </Link>
 
           {/* Mobile menu button */}

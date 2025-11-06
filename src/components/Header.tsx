@@ -6,23 +6,35 @@ export async function Header() {
   const session = await auth();
 
   return (
-    <header style={{ 
-      background: 'rgba(255, 255, 255, 0.95)', 
+    <header style={{
+      background: 'rgba(255, 255, 255, 0.95)',
       boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
       position: 'sticky',
       top: 0,
       zIndex: 50
     }}>
-      <div style={{ 
-        maxWidth: '80rem', 
-        margin: '0 auto', 
+      <div style={{
+        maxWidth: '80rem',
+        margin: '0 auto',
         padding: '1rem 1.5rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#667eea' }}>
-          Z-Dict
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none' }}>
+          <img
+            src="/icon-128x128.png"
+            alt="Z-Dict"
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+            }}
+          />
+          <span style={{ fontSize: '1.5rem', fontWeight: '800', color: '#2c4e6b', letterSpacing: '-0.02em' }}>
+            Z-Dict
+          </span>
         </Link>
 
         <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
