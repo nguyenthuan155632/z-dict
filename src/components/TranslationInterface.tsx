@@ -84,7 +84,7 @@ export function TranslationInterface({ isAuthenticated }: TranslationInterfacePr
 
   const handleBookmark = async () => {
     if (!isWord || !inputText.trim()) return;
-    
+
     const result = await addBookmark(inputText.trim(), sourceLanguage, translation);
     if (result.error) {
       setMessage(result.error);
@@ -148,12 +148,19 @@ export function TranslationInterface({ isAuthenticated }: TranslationInterfacePr
         <textarea
           ref={inputRef}
           value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
+          onChange={(e) => {
+            setInputText(e.target.value);
+            // Clear translation when user starts typing new text
+            if (translation) {
+              setTranslation('');
+              setMessage('');
+            }
+          }}
           placeholder={`Enter ${sourceLanguage === 'en' ? 'English' : 'Vietnamese'} text...`}
           className="input"
           style={{ minHeight: '120px', resize: 'vertical' }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
               e.preventDefault();
               handleTranslate();
             }
@@ -170,7 +177,7 @@ export function TranslationInterface({ isAuthenticated }: TranslationInterfacePr
             }
           }}
         />
-        
+
         {/* Suggestions Dropdown */}
         {showSuggestions && suggestions.length > 0 && (
           <div
@@ -228,7 +235,7 @@ export function TranslationInterface({ isAuthenticated }: TranslationInterfacePr
         >
           {loading ? 'Translating...' : 'Translate'}
         </button>
-        
+
         {translation && (
           <>
             <button
@@ -238,7 +245,7 @@ export function TranslationInterface({ isAuthenticated }: TranslationInterfacePr
             >
               🔄 Regenerate
             </button>
-            
+
             {isWord && isAuthenticated && (
               <button
                 onClick={handleBookmark}
@@ -267,43 +274,32 @@ export function TranslationInterface({ isAuthenticated }: TranslationInterfacePr
 
       {/* Translation Output */}
       {translation && (
-        <div style={{
-          padding: '1.5rem',
-          background: '#f9fafb',
-          borderRadius: '0.5rem',
-          border: '1px solid #e5e7eb'
-        }}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '1rem'
-          }}>
-            <h3 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#374151', margin: 0 }}>
-              Translation:
-            </h3>
-            <a
-              href={`https://translate.google.com/?sl=${sourceLanguage}&tl=${targetLanguage}&text=${encodeURIComponent(inputText)}&op=translate`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: '0.875rem',
-                color: '#2563eb',
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.375rem',
-                padding: '0.375rem 0.75rem',
-                borderRadius: '0.375rem',
-                background: '#eff6ff',
-                border: '1px solid #dbeafe',
-              }}
-            >
-              🔊 Listen on Google Translate
-            </a>
-          </div>
+        <>
+          <h3 style={{ fontSize: '1.125rem', fontWeight: '600', color: '#374151', margin: 0, marginBottom: '1rem' }}>
+            Translation:
+          </h3>
+          <a
+            href={`https://translate.google.com/?sl=${sourceLanguage}&tl=${targetLanguage}&text=${encodeURIComponent(inputText)}&op=translate`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontSize: '0.875rem',
+              color: '#2563eb',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.375rem',
+              padding: '0.375rem 0.75rem',
+              borderRadius: '0.375rem',
+              background: '#eff6ff',
+              border: '1px solid #dbeafe',
+              marginBottom: '1rem',
+            }}
+          >
+            🔊 Listen on Google Translate
+          </a>
           <MarkdownRenderer content={translation} />
-        </div>
+        </>
       )}
     </div>
   );

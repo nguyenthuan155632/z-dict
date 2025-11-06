@@ -255,7 +255,14 @@ export function MobileTranslationInterface({ isAuthenticated }: MobileTranslatio
           <textarea
             ref={inputRef}
             value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
+            onChange={(e) => {
+              setInputText(e.target.value);
+              // Clear translation when user starts typing new text
+              if (translation) {
+                setTranslation('');
+                setMessage('');
+              }
+            }}
             placeholder={`Type ${sourceLanguage === 'en' ? 'English' : 'Vietnamese'} text...`}
             className="input"
             style={{
@@ -267,7 +274,7 @@ export function MobileTranslationInterface({ isAuthenticated }: MobileTranslatio
               borderRadius: '0.75rem',
             }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
+              if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
                 e.preventDefault();
                 handleTranslate();
               }
@@ -424,11 +431,7 @@ export function MobileTranslationInterface({ isAuthenticated }: MobileTranslatio
 
         {/* Translation Result */}
         {translation && (
-          <div style={{
-            marginTop: '1.5rem',
-            paddingTop: '1.5rem',
-            borderTop: '1px solid #e5e7eb',
-          }}>
+          <>
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -462,20 +465,14 @@ export function MobileTranslationInterface({ isAuthenticated }: MobileTranslatio
                   border: '1px solid #dbeafe',
                 }}
               >
-                🔊 Audio
+                🔊 Google Translate
               </a>
             </div>
 
-            <div style={{
-              background: 'linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)',
-              padding: '1.5rem',
-              borderRadius: '0.75rem',
-              border: '1px solid #e5e7eb',
-              boxShadow: 'inset 0 1px 2px rgba(0, 0, 0, 0.02)',
-            }}>
+            <div style={{ padding: '0.5rem' }}>
               <MarkdownRenderer content={translation} />
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>
