@@ -4,8 +4,8 @@
   "description": "English-Vietnamese bilingual dictionary with AI-powered translations",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#4f46e5",
-  "theme_color": "#4f46e5",
+  "background_color": "#1e3a5f",
+  "theme_color": "#1e3a5f",
   "orientation": "portrait",
   "scope": "/",
   "icons": [
