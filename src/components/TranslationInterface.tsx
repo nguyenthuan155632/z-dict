@@ -147,7 +147,7 @@ export function TranslationInterface({ isAuthenticated }: TranslationInterfacePr
       <div style={{ position: 'relative', marginBottom: '1rem' }}>
         <textarea
           ref={inputRef}
-          rows={10}
+          rows={8}
           value={inputText}
           onChange={(e) => {
             setInputText(e.target.value);
