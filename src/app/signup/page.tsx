@@ -31,7 +31,7 @@ export default function SignupPage() {
     <div className="flex items-center justify-center" style={{
       minHeight: '100vh',
       padding: '1rem',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #2c5f8d 0%, #1e3a5f 100%)',
     }}>
       <div className="card" style={{
         maxWidth: '28rem',
@@ -47,13 +47,13 @@ export default function SignupPage() {
             fontSize: 'clamp(1.75rem, 5vw, 2rem)',
             fontWeight: '800',
             marginBottom: '0.5rem',
-            color: '#1e293b',
+            color: '#ffffff',
             letterSpacing: '-0.02em',
           }}>
             Create Account
           </h1>
           <p style={{
-            color: '#64748b',
+            color: '#e0e7ff',
             fontSize: '0.9375rem',
             fontWeight: '500',
           }}>
@@ -87,7 +87,7 @@ export default function SignupPage() {
               marginBottom: '0.75rem',
               fontWeight: '600',
               fontSize: '0.9375rem',
-              color: '#334155'
+              color: '#ffffff'
             }}>
               Full Name
             </label>
@@ -114,7 +114,8 @@ export default function SignupPage() {
               marginBottom: '0.75rem',
               fontWeight: '600',
               fontSize: '0.9375rem',
-              color: '#334155'
+              color: '#ffffff',
+              marginTop: '1rem',
             }}>
               Email Address
             </label>
@@ -141,7 +142,8 @@ export default function SignupPage() {
               marginBottom: '0.75rem',
               fontWeight: '600',
               fontSize: '0.9375rem',
-              color: '#334155'
+              color: '#ffffff',
+              marginTop: '1rem',
             }}>
               Password
             </label>
@@ -164,7 +166,7 @@ export default function SignupPage() {
             <p style={{
               marginTop: '0.5rem',
               fontSize: '0.8125rem',
-              color: '#94a3b8',
+              color: '#cbd5e1',
             }}>
               Minimum 6 characters
             </p>
@@ -180,8 +182,8 @@ export default function SignupPage() {
               fontSize: '1rem',
               fontWeight: '600',
               borderRadius: '0.75rem',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+              background: 'linear-gradient(135deg, #2c5f8d 0%, #1e3a5f 100%)',
+              boxShadow: '0 4px 12px rgba(30, 58, 95, 0.3)',
             }}
           >
             {loading ? (
@@ -197,16 +199,16 @@ export default function SignupPage() {
         <p style={{
           marginTop: '1.5rem',
           textAlign: 'center',
-          color: '#64748b',
+          color: '#e0e7ff',
           fontSize: '0.9375rem',
         }}>
           Already have an account?{' '}
           <Link
             href="/login"
             style={{
-              color: '#667eea',
+              color: '#ffffff',
               fontWeight: '600',
-              textDecoration: 'none',
+              textDecoration: 'underline',
             }}
           >
             Login

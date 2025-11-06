@@ -36,7 +36,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center" style={{
       minHeight: '100vh',
       padding: '1rem',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #2c5f8d 0%, #1e3a5f 100%)',
     }}>
       <div className="card" style={{
         maxWidth: '28rem',
@@ -52,13 +52,13 @@ export default function LoginPage() {
             fontSize: 'clamp(1.75rem, 5vw, 2rem)',
             fontWeight: '800',
             marginBottom: '0.5rem',
-            color: '#1e293b',
+            color: '#ffffff',
             letterSpacing: '-0.02em',
           }}>
             Welcome Back
           </h1>
           <p style={{
-            color: '#64748b',
+            color: '#e0e7ff',
             fontSize: '0.9375rem',
             fontWeight: '500',
           }}>
@@ -92,7 +92,7 @@ export default function LoginPage() {
               marginBottom: '0.75rem',
               fontWeight: '600',
               fontSize: '0.9375rem',
-              color: '#334155'
+              color: '#ffffff'
             }}>
               Email Address
             </label>
@@ -119,7 +119,8 @@ export default function LoginPage() {
               marginBottom: '0.75rem',
               fontWeight: '600',
               fontSize: '0.9375rem',
-              color: '#334155'
+              color: '#ffffff',
+              marginTop: '1rem',
             }}>
               Password
             </label>
@@ -150,8 +151,8 @@ export default function LoginPage() {
               fontSize: '1rem',
               fontWeight: '600',
               borderRadius: '0.75rem',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+              background: 'linear-gradient(135deg, #2c5f8d 0%, #1e3a5f 100%)',
+              boxShadow: '0 4px 12px rgba(30, 58, 95, 0.3)',
             }}
           >
             {loading ? (
@@ -167,16 +168,16 @@ export default function LoginPage() {
         <p style={{
           marginTop: '1.5rem',
           textAlign: 'center',
-          color: '#64748b',
+          color: '#e0e7ff',
           fontSize: '0.9375rem',
         }}>
           Don't have an account?{' '}
           <Link
             href="/signup"
             style={{
-              color: '#667eea',
+              color: '#ffffff',
               fontWeight: '600',
-              textDecoration: 'none',
+              textDecoration: 'underline',
             }}
           >
             Sign up
