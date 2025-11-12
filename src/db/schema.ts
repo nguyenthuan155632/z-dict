@@ -5,7 +5,7 @@ import { relations } from 'drizzle-orm';
 export const languageEnum = pgEnum('language', ['en', 'vi']);
 
 // Users table
-export const users = pgTable('users', {
+export const users = pgTable('dict_users', {
   id: uuid('id').defaultRandom().primaryKey(),
   email: varchar('email', { length: 255 }).notNull().unique(),
   password: text('password').notNull(),
@@ -17,7 +17,7 @@ export const users = pgTable('users', {
 }));
 
 // Words table - stores suggestion words for both languages
-export const words = pgTable('words', {
+export const words = pgTable('dict_words', {
   id: uuid('id').defaultRandom().primaryKey(),
   word: varchar('word', { length: 255 }).notNull(),
   language: languageEnum('language').notNull(),
@@ -31,7 +31,7 @@ export const words = pgTable('words', {
 }));
 
 // Translation cache table - stores all translation results
-export const translationCache = pgTable('translation_cache', {
+export const translationCache = pgTable('dict_translation_cache', {
   id: uuid('id').defaultRandom().primaryKey(),
   sourceText: text('source_text').notNull(),
   sourceLanguage: languageEnum('source_language').notNull(),
@@ -46,7 +46,7 @@ export const translationCache = pgTable('translation_cache', {
 }));
 
 // Bookmarks table - stores user bookmarks for individual words only
-export const bookmarks = pgTable('bookmarks', {
+export const bookmarks = pgTable('dict_bookmarks', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: uuid('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   word: varchar('word', { length: 255 }).notNull(),

@@ -92,7 +92,7 @@ async function bulkInsertWords(client, filePath, language) {
           SELECT 1 FROM pg_constraint
           WHERE conname = 'words_word_language_unique'
         ) THEN
-          ALTER TABLE words ADD CONSTRAINT words_word_language_unique UNIQUE (word, language);
+          ALTER TABLE dict_words ADD CONSTRAINT words_word_language_unique UNIQUE (word, language);
         END IF;
       END $$;
     `;
@@ -157,7 +157,7 @@ async function insertBatch(client, words, language) {
     const values = words.map(word => ({ word, language }));
 
     const result = await client`
-      INSERT INTO words ${client(values, 'word', 'language')}
+      INSERT INTO dict_words ${client(values, 'word', 'language')}
       ON CONFLICT (word, language) DO NOTHING
     `;
 
@@ -175,7 +175,7 @@ async function insertBatch(client, words, language) {
     for (const word of words) {
       try {
         await client`
-          INSERT INTO words (word, language)
+          INSERT INTO dict_words (word, language)
           VALUES (${word}, ${language})
           ON CONFLICT (word, language) DO NOTHING
         `;

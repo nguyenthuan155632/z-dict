@@ -12,7 +12,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "node scripts/seed.js"
+    "db:seed": "node scripts/seed.js",
+    "db:drop": "node scripts/drop-database.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
