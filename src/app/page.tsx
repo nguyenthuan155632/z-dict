@@ -62,6 +62,83 @@ export default async function HomePage() {
 
         <MobileTranslationInterface isAuthenticated={!!session?.user} />
 
+        {/* Complete Dictionary Entry Point */}
+        <div style={{
+          maxWidth: '56rem',
+          margin: '2rem auto 0',
+        }}>
+          <a
+            href="/words"
+            style={{
+              display: 'block',
+              textDecoration: 'none',
+              background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+              borderRadius: '1rem',
+              padding: '1.5rem',
+              textAlign: 'center',
+              border: '1px solid #0ea5e9',
+              boxShadow: '0 4px 16px rgba(14, 165, 233, 0.15)',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+            }}
+          >
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.75rem',
+              marginBottom: '0.75rem',
+            }}>
+              <div style={{
+                width: '48px',
+                height: '48px',
+                background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)',
+                borderRadius: '0.75rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.5rem',
+              }}>
+                📚
+              </div>
+              <div style={{
+                textAlign: 'left',
+              }}>
+                <h3 style={{
+                  fontSize: '1.125rem',
+                  fontWeight: '700',
+                  color: '#0c4a6e',
+                  margin: '0 0 0.25rem 0',
+                }}>
+                  Complete Dictionary
+                </h3>
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: '#0369a1',
+                  margin: 0,
+                  fontWeight: '500',
+                }}>
+                  Browse 1,000+ words with search
+                </p>
+              </div>
+            </div>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
+              color: '#0284c7',
+              fontSize: '0.875rem',
+              fontWeight: '600',
+            }}>
+              <span>View all words</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </div>
+          </a>
+        </div>
+
         {!session?.user && (
           <div style={{
             maxWidth: '56rem',
