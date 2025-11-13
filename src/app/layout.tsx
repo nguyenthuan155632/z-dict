@@ -67,7 +67,8 @@ export default function RootLayout({
         <PWAInstallPrompt />
         <script dangerouslySetInnerHTML={{
           __html: `
-            if ('serviceWorker' in navigator) {
+            // Only register service worker in production
+            if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
               window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js').catch(() => {});
               });
