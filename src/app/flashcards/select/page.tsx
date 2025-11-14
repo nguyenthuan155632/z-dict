@@ -443,24 +443,36 @@ export default function FlashcardSelectPage() {
             gap: '0.75rem',
             marginBottom: '2rem',
           }}>
-              <button
-                onClick={() => window.location.href = '/flashcards/learn'}
+            <button
+              onClick={() => window.location.href = '/flashcards/learn'}
               style={{
                 background: '#10b981',
                 color: 'white',
-                padding: '0.875rem 2rem',
+                padding: '0.8rem 1.5rem',
                 borderRadius: '0.75rem',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: '1rem',
+                fontSize: '0.95rem',
                 fontWeight: '500',
-                minWidth: '180px',
+                minWidth: '140px',
+                width: 'auto',
+                display: 'inline-flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                textAlign: 'center',
+                whiteSpace: 'pre-line',
               }}
             >
-              Start Learning ({wordsData.length} words)
+              <span style={{ lineHeight: 1.2 }}>
+                Start Learning
+              </span>
+              <span style={{ fontSize: '0.8rem', opacity: 0.9 }}>
+                ({wordsData.length} words)
+              </span>
             </button>
-              <button
-                onClick={() => window.location.href = '/flashcards/learn?mode=history'}
+            <button
+              onClick={() => window.location.href = '/flashcards/learn?mode=history'}
               style={{
                 background: '#3b82f6',
                 color: 'white',
@@ -805,49 +817,14 @@ export default function FlashcardSelectPage() {
                 marginBottom: '2rem',
                 textAlign: 'center',
               }}>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  marginBottom: '1rem',
+                <h2 style={{
+                  fontSize: '2rem',
+                  fontWeight: '700',
+                  color: '#1f2937',
+                  margin: '0 0 0.5rem 0',
                 }}>
-                  <h2 style={{
-                    fontSize: '2rem',
-                    fontWeight: '700',
-                    color: '#1f2937',
-                    margin: 0,
-                  }}>
-                    {currentCandidateWord.word}
-                  </h2>
-                  <button
-                    onClick={() => toggleWordSelection(currentCandidateWord)}
-                    disabled={!selectedWords.some(w => w.word === currentCandidateWord.word) && selectedWords.length >= 20}
-                    style={{
-                      background: selectedWords.some(w => w.word === currentCandidateWord.word)
-                        ? '#10b981'
-                        : selectedWords.length >= 20
-                          ? '#9ca3af'
-                          : '#3b82f6',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '0.5rem',
-                      padding: '0.75rem 1.5rem',
-                      cursor: selectedWords.length >= 20 && !selectedWords.some(w => w.word === currentCandidateWord.word)
-                        ? 'not-allowed'
-                        : 'pointer',
-                      fontSize: '1rem',
-                      fontWeight: '500',
-                      transition: 'background 0.2s',
-                    }}
-                  >
-                    {selectedWords.some(w => w.word === currentCandidateWord.word)
-                      ? '✓ Selected'
-                      : selectedWords.length >= 20
-                        ? 'Limit Reached'
-                        : 'Select & Continue'
-                    }
-                  </button>
-                </div>
+                  {currentCandidateWord.word}
+                </h2>
 
                 {currentCandidateWord.phonetic && (
                   <p style={{
@@ -891,6 +868,38 @@ export default function FlashcardSelectPage() {
                     <strong>Vietnamese:</strong> {currentCandidateDefinition?.vi_meaning || 'No meaning available'}
                   </p>
                 </div>
+
+                <button
+                  onClick={() => toggleWordSelection(currentCandidateWord)}
+                  disabled={!selectedWords.some(w => w.word === currentCandidateWord.word) && selectedWords.length >= 20}
+                  style={{
+                    background: selectedWords.some(w => w.word === currentCandidateWord.word)
+                      ? '#10b981'
+                      : selectedWords.length >= 20
+                        ? '#9ca3af'
+                        : '#3b82f6',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '0.5rem',
+                    padding: '0.4rem 0.9rem',
+                    cursor: selectedWords.length >= 20 && !selectedWords.some(w => w.word === currentCandidateWord.word)
+                      ? 'not-allowed'
+                      : 'pointer',
+                    fontSize: '0.8rem',
+                    fontWeight: '500',
+                    transition: 'background 0.2s, transform 0.2s',
+                    minWidth: 'auto',
+                    maxWidth: '150px',
+                    margin: '0 auto',
+                  }}
+                >
+                  {selectedWords.some(w => w.word === currentCandidateWord.word)
+                    ? '✓ Selected'
+                    : selectedWords.length >= 20
+                      ? 'Limit Reached'
+                      : 'Select & Continue'
+                  }
+                </button>
               </div>
             )}
 
@@ -1041,11 +1050,11 @@ export default function FlashcardSelectPage() {
                 style={{
                   background: '#3b82f6',
                   color: 'white',
-                  padding: '1rem 2rem',
+                  padding: '0.75rem 1.5rem',
                   borderRadius: '0.75rem',
                   border: 'none',
                   cursor: loading ? 'not-allowed' : 'pointer',
-                  fontSize: '1.125rem',
+                  fontSize: '1rem',
                   fontWeight: '600',
                   opacity: loading ? 0.6 : 1,
                   transition: 'opacity 0.2s',
@@ -1057,7 +1066,7 @@ export default function FlashcardSelectPage() {
           </div>
         )}
 
-        <style>{`
+          <style>{`
           @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
