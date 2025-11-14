@@ -130,6 +130,66 @@ export function MobileHeader({ isAuthenticated, userName }: MobileHeaderProps) {
                   👤 {userName || 'User'}
                 </div>
                 <Link
+                  href="/"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'block',
+                    padding: '1rem 1.25rem',
+                    color: '#334155',
+                    borderBottom: '1px solid #f1f5f9',
+                    fontWeight: '500',
+                    transition: 'background 0.15s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#f8fafc';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  🔄 Translate
+                </Link>
+                <Link
+                  href="/words"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'block',
+                    padding: '1rem 1.25rem',
+                    color: '#334155',
+                    borderBottom: '1px solid #f1f5f9',
+                    fontWeight: '500',
+                    transition: 'background 0.15s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#f8fafc';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  📚 Dictionary
+                </Link>
+                <Link
+                  href="/flashcards/select"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'block',
+                    padding: '1rem 1.25rem',
+                    color: '#334155',
+                    borderBottom: '1px solid #f1f5f9',
+                    fontWeight: '500',
+                    transition: 'background 0.15s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#f8fafc';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                  }}
+                >
+                  🃏 Flashcards
+                </Link>
+                <Link
                   href="/bookmarks"
                   onClick={() => setMenuOpen(false)}
                   style={{

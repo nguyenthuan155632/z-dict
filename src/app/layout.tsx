@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { PWAInstallPrompt } from '@/components/PWAInstallPrompt';
+import { SessionProvider } from '@/lib/auth';
 
 export const metadata: Metadata = {
   title: 'Z-Dict - English-Vietnamese Dictionary',
@@ -63,18 +64,20 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Z-Dict" />
       </head>
       <body>
-        {children}
-        <PWAInstallPrompt />
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            // Only register service worker in production
-            if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
-              window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
-              });
-            }
-          `
-        }} />
+        <SessionProvider>
+          {children}
+          <PWAInstallPrompt />
+          <script dangerouslySetInnerHTML={{
+            __html: `
+              // Only register service worker in production
+              if ('serviceWorker' in navigator && window.location.hostname !== 'localhost') {
+                window.addEventListener('load', () => {
+                  navigator.serviceWorker.register('/sw.js').catch(() => {});
+                });
+              }
+            `
+          }} />
+        </SessionProvider>
       </body>
     </html>
   );

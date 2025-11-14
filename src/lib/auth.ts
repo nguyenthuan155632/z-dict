@@ -1,17 +1,21 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import { SessionProvider } from 'next-auth/react';
+import { z } from 'zod';
 import { db } from '@/db';
 import { users } from '@/db/schema';
-import { eq } from 'drizzle-orm';
 import bcrypt from 'bcryptjs';
-import { z } from 'zod';
+import { eq } from 'drizzle-orm';
 
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-});
+// Define the user type for better type safety
+export interface CustomUser {
+  id: string;
+  email: string;
+  name?: string;
+}
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+// Client-safe auth configuration 
+export const authOptions = {
   trustHost: true,
   providers: [
     Credentials({
@@ -21,20 +25,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       authorize: async (credentials) => {
         try {
-          const { email, password } = loginSchema.parse(credentials);
+          const { email, password } = await z.object({
+            email: z.string().email(),
+            password: z.string().min(6),
+          }).parseAsync(credentials);
 
+          // Find user in database
           const user = await db.query.users.findFirst({
             where: eq(users.email, email),
           });
 
-          if (!user) {
-            throw new Error('Invalid email or password');
+          if (!user || !user.password) {
+            return null;
           }
 
-          const isValidPassword = await bcrypt.compare(password, user.password);
+          // Verify password
+          const isPasswordValid = await bcrypt.compare(password, user.password);
 
-          if (!isValidPassword) {
-            throw new Error('Invalid email or password');
+          if (!isPasswordValid) {
+            return null;
           }
 
           return {
@@ -49,13 +58,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: any; user: any }) {
       if (user) {
         token.id = user.id;
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: any; token: any }) {
       if (session.user) {
         session.user.id = token.id as string;
       }
@@ -66,7 +75,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: '/login',
   },
   session: {
-    strategy: 'jwt',
+    strategy: 'jwt' as const,
   },
-});
+};
 
+export const { handlers, signIn, signOut, auth } = NextAuth(authOptions);
+
+// Export SessionProvider for client-side components
+export { SessionProvider };

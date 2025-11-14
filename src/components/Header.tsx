@@ -43,6 +43,12 @@ export async function Header() {
               <Link href="/" style={{ color: '#374151', fontWeight: '500' }}>
                 Translate
               </Link>
+              <Link href="/words" style={{ color: '#374151', fontWeight: '500' }}>
+                Dictionary
+              </Link>
+              <Link href="/flashcards/select" style={{ color: '#374151', fontWeight: '500' }}>
+                Flashcards
+              </Link>
               <Link href="/bookmarks" style={{ color: '#374151', fontWeight: '500' }}>
                 Bookmarks
               </Link>
