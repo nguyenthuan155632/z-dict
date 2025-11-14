@@ -424,6 +424,29 @@ export default function FlashcardSelectPage() {
           padding: '2rem 1rem',
           textAlign: 'center',
         }}>
+          <div style={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'flex-start',
+            marginBottom: '0.5rem',
+          }}>
+            <button
+              onClick={() => window.location.href = '/'}
+              style={{
+                background: '#e5e7eb',
+                color: '#1f2937',
+                border: 'none',
+                borderRadius: '999px',
+                padding: '0.35rem 1rem',
+                fontSize: '0.85rem',
+                fontWeight: '500',
+                cursor: 'pointer',
+                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.08)',
+              }}
+            >
+              ← Home
+            </button>
+          </div>
           <h1 style={{
             fontSize: 'clamp(1.75rem, 6vw, 2.25rem)',
             fontWeight: '700',
@@ -448,7 +471,7 @@ export default function FlashcardSelectPage() {
               style={{
                 background: '#10b981',
                 color: 'white',
-                padding: '0.8rem 1.5rem',
+                padding: '0.6rem 1.2rem',
                 borderRadius: '0.75rem',
                 border: 'none',
                 cursor: 'pointer',
@@ -465,7 +488,7 @@ export default function FlashcardSelectPage() {
               }}
             >
               <span style={{ lineHeight: 1.2 }}>
-                Start Learning
+                Learn Today's Words
               </span>
               <span style={{ fontSize: '0.8rem', opacity: 0.9 }}>
                 ({wordsData.length} words)
@@ -476,7 +499,7 @@ export default function FlashcardSelectPage() {
               style={{
                 background: '#3b82f6',
                 color: 'white',
-                padding: '0.875rem 2rem',
+                padding: '0.6rem 1.2rem',
                 borderRadius: '0.75rem',
                 border: 'none',
                 cursor: 'pointer',
@@ -495,7 +518,7 @@ export default function FlashcardSelectPage() {
               style={{
                 background: '#6b7280',
                 color: 'white',
-                padding: '0.875rem 2rem',
+                padding: '0.6rem 1.2rem',
                 borderRadius: '0.75rem',
                 border: 'none',
                 cursor: 'pointer',
@@ -722,7 +745,31 @@ export default function FlashcardSelectPage() {
         <div style={{
           textAlign: 'center',
           marginBottom: '2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '0.5rem',
+          position: 'relative',
         }}>
+          <button
+            onClick={() => window.location.href = '/'}
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              background: '#e5e7eb',
+              color: '#1f2937',
+              border: 'none',
+              borderRadius: '999px',
+              padding: '0.35rem 1rem',
+              fontSize: '0.85rem',
+              fontWeight: '500',
+              cursor: 'pointer',
+              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.08)',
+            }}
+          >
+            ← Home
+          </button>
           <h1 style={{
             fontSize: 'clamp(1.75rem, 6vw, 2.25rem)',
             fontWeight: '700',
@@ -736,7 +783,7 @@ export default function FlashcardSelectPage() {
             color: '#64748b',
             margin: 0,
           }}>
-            Select exactly 20 words one by one for today ({today})
+            Select exactly 20 words one by one<br /> for today ({today})
           </p>
         </div>
 
@@ -919,7 +966,7 @@ export default function FlashcardSelectPage() {
                   color: 'white',
                   border: 'none',
                   borderRadius: '0.75rem',
-                  padding: '0.75rem 1rem',
+                  padding: '0.5rem 0.75rem',
                   cursor: currentWordIndex === 0 ? 'not-allowed' : 'pointer',
                   fontSize: '0.875rem',
                   fontWeight: '500',
@@ -944,7 +991,7 @@ export default function FlashcardSelectPage() {
                   color: 'white',
                   border: 'none',
                   borderRadius: '0.75rem',
-                  padding: '0.75rem 1rem',
+                  padding: '0.5rem 0.75rem',
                   cursor: currentWordIndex === candidateWords.length - 1 ? 'not-allowed' : 'pointer',
                   fontSize: '0.875rem',
                   fontWeight: '500',
@@ -1066,7 +1113,7 @@ export default function FlashcardSelectPage() {
           </div>
         )}
 
-          <style>{`
+        <style>{`
           @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
